@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Villainous White Elephant — Last Christmas</title>
+  <meta name="description" content="Blind-pick your Christmas villain. Unwrap a present… or steal one.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <header class="top">
+    <h1>🎄 Villainous White Elephant 🎄</h1>
+    <p class="sub">The Spirit of Christmas has wrapped a villain in every box. No peeking! Unwrap a present — or <strong>steal</strong> one that's already open.</p>
+    <nav class="controls">
+      <button id="btn-new" class="btn">🔀 New draft</button>
+      <label class="toggle"><input type="checkbox" id="opt-coal"> 🪨 Lump of Coal</label>
+      <label class="toggle"><input type="checkbox" id="opt-sound" checked> 🔔 Sound</label>
+      <button id="btn-results" class="btn ghost">📜 Results</button>
+    </nav>
+    <details class="rules">
+      <summary>How to play</summary>
+      <ol>
+        <li>Everyone rolls a d20 — highest goes first.</li>
+        <li>On your turn, <strong>unwrap</strong> a present or <strong>steal</strong> a villain someone already has.</li>
+        <li>If your villain is stolen, unwrap a new present or steal from someone else — but not straight back.</li>
+        <li>A villain can be stolen at most <strong>twice</strong>; after the second steal it's 🔒 locked.</li>
+        <li>Lump of Coal (optional): whoever opens it must immediately steal from someone. No take-backs.</li>
+      </ol>
+    </details>
+  </header>
+
+  <main id="grid" class="grid" aria-live="polite"></main>
+
+  <footer class="foot">
+    <p>Last Christmas · a holiday one-shot · progress is saved in this browser</p>
+  </footer>
+
+  <!-- name prompt -->
+  <dialog id="dlg-name">
+    <form method="dialog" id="form-name">
+      <h2 id="dlg-title">Who's unwrapping?</h2>
+      <p id="dlg-text" class="muted"></p>
+      <div id="chips" class="chips" role="listbox" aria-label="Players"></div>
+      <div class="newp">
+        <input id="inp-name" autocomplete="off" placeholder="➕ New player name" maxlength="32">
+        <button type="button" class="btn small" id="btn-addp">Add</button>
+      </div>
+      <p class="hint muted">Two players with the same name? Just add the name again — they'll become <em>Alex</em> and <em>Alex #2</em>, each with their own icon.</p>
+      <div class="row">
+        <button value="cancel" formnovalidate class="btn ghost">Cancel</button>
+        <button value="ok" class="btn" id="dlg-ok" disabled>🎁 Unwrap!</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- results -->
+  <dialog id="dlg-results">
+    <form method="dialog">
+      <h2>📜 The Naughty List</h2>
+      <table id="results-table"><thead><tr><th>Player</th><th>Villain</th></tr></thead><tbody></tbody></table>
+      <p class="muted" id="results-empty">Nobody has unwrapped anything yet.</p>
+      <div class="row">
+        <button type="button" class="btn ghost" id="btn-copy">📋 Copy</button>
+        <button value="close" class="btn">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="villains.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
